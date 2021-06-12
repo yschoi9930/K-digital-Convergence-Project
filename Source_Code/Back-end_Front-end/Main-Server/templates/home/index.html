@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<head>
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <!-- Demo styles -->
+  <link rel="stylesheet" href="../static/assets/css/swiper_style.css">
+  <link rel="stylesheet" href="../static/assets/css/button_style.css">
+  <!-- Button styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700&amp;display=swap'>
+</head>
+
+<div>   
+  <!-- start of hero -->
+  <section class="hero-slider hero-style">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="slide-inner slide-bg-image" data-background="http://www.msnews.co.kr/news/photo/201812/93893_107312_207.jpg">
+            <div class="container">
+              <div data-swiper-parallax="300" class="slide-title">
+                <h2></h2>
+              </div>
+              <div data-swiper-parallax="400" class="slide-text">
+                <p></p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <!-- end slide-inner -->
+        </div>
+        <!-- end swiper-slide -->
+
+        <div class="swiper-slide">
+          <div class="slide-inner slide-bg-image" data-background="https://image.slidesharecdn.com/oohtvintroduction1901-190201014256/95/ooh-tv-201901-ver-7-638.jpg?cb=1548987691">
+            <div class="container">
+              <div data-swiper-parallax="300" class="slide-title">
+                <h2></h2>
+              </div>
+              <div data-swiper-parallax="400" class="slide-text">
+                <p></p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <!-- end slide-inner -->
+        </div>
+        <!-- end swiper-slide -->
+      </div>
+      <!-- end swiper-wrapper -->
+
+      <!-- swipper controls -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+{% include "base/footer.html" %}
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script src="../static/assets/js/swiper.js"></script>
+{% endblock javascripts %}

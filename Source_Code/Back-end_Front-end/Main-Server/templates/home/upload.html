@@ -1,0 +1,126 @@
+{% extends 'base/base-fullscreen.html' %}
+
+{% block title %} Login {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% if loginCheck %}
+  {% block content %}
+
+  <head>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="../static/assets/css/select_style.css">
+    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+  </head>
+
+  <!-- Page content -->
+  <div class="container mt--8 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <div class="card bg-secondary border-0 mb-0">
+          <div class="card-body px-lg-5 py-lg-5 text-center">
+            <h3 class="mb-4 text-center">광고 등록</h3>
+            <span class="mb-0 text-muted text-center">
+
+            </span>      
+
+            <br />
+
+            <form id="form" action="{{ url_for('upload') }}" method="POST" >
+              {% if category == "소상공인" %}
+                <div class="input-group mb-1">
+                  <select class="form-control form-control-sm" id="age" onchange="handleOnChange(this)" required>
+                    <option selected>타겟 나이를 선택하세요.</option>
+                    <option value="kids">아동</option>
+                    <option value="2030">2030</option>
+                    <option value="4050">4050</option>
+                    <option value="silver">노인</option>
+                  </select>
+                </div>
+                <br />
+                <div class="input-group mb-2">
+                  <select class="form-control form-control-sm" id="gender" required>
+                    <option selected>타겟 성별을 선택하세요.</option>
+                  </select>
+                </div>
+                <br />
+                <div class="input-group mb-3">
+                  <select class="form-control form-control-sm" id="period" onchange="handleOnChange1(this)" required>
+                    <option selected>기간을 선택하세요.</option>
+                    <option value="1">1개월</option>
+                    <option value="2">2개월</option>
+                    <option value="3">3개월</option>
+                  </select>
+                </div>
+                <br />
+                <div class="input-group mb-4">
+                  <span class="form-control form-control-sm" id='budget'style="height: 28px;"></span>
+                </div>
+
+                <div class="input-group mb-1">
+                  <input class="form-control form-control-sm" id="addr1" name="addr1" 
+                          type="text" placeholder="타겟팅 지역 주소" readonly>
+                  <button type="button" class="btn btn-primary shadow-2 mb-4" onclick="openZipSearch()">검색</button>
+                </div>
+
+              {% else %}
+
+                <div class="input-group mb-1">
+                  <select class="form-control form-control-sm" id="addr1" required>
+                    <option selected>패키지를 선택하세요.</option>
+                    <option value="서울시">서울 생활권 풀 패키지</option>
+                    <option value="서울시 half">서울 생활권 하프 패키지</option>
+                  </select>
+                </div>
+                <br />
+                <div class="input-group mb-1">
+                  <select class="form-control form-control-sm" id="age" onchange="handleOnChange(this)" required>
+                    <option selected>타겟 나이를 선택하세요.</option>
+                    <option value="kids">아동</option>
+                    <option value="2030">2030</option>
+                    <option value="4050">4050</option>
+                    <option value="silver">노인</option>
+                  </select>
+                </div>
+                <br />
+                <div class="input-group mb-2">
+                  <select class="form-control form-control-sm" id="gender" required>
+                    <option selected>타겟 성별을 선택하세요.</option>
+                  </select>
+                </div>
+                <br />
+                <div class="input-group mb-3">
+                  <select class="form-control form-control-sm" id="period" onchange="handleOnChange2(this)" required>
+                    <option selected>기간을 선택하세요.</option>
+                    <option value="1">1개월</option>
+                    <option value="2">2개월</option>
+                    <option value="3">3개월</option>
+                  </select>
+                </div>
+                <br />
+                <div class="input-group mb-4">
+                  <span class="form-control form-control-sm" id='budget'style="height: 28px;"></span>
+                </div>
+
+              {% endif %}
+
+              <button type="button" name="upload" id="execute" value="upload" 
+                      class="btn btn-primary shadow-2 mb-4">다음</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../static/assets/js/upload.js"></script>
+
+  {% endblock content %}
+{% else %}
+  <h1>로그인 후 접속 가능합니다.</h1>
+{% endif %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,7 @@
+flask
+pymysql
+flask_restful
+flask_jwt_extended
+requests
+boto3
+python-consul

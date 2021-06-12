@@ -1,0 +1,8 @@
+{
+    "service": {
+        "name" : "get-server",
+        "address": "172.18.0.5",
+        "tags" : ["get-server"],
+        "port" : 5003
+    }
+}

@@ -1,0 +1,15 @@
+
+
+select {
+    --text: #3F4656;
+    --border: #2F3545;
+    --background: #151924;
+}
+
+
+* {
+    box-sizing: inherit;
+}
+*:before, *:after {
+    box-sizing: inherit;
+}

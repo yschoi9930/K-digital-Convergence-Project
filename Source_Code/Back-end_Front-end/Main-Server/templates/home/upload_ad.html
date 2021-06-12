@@ -1,0 +1,51 @@
+{% extends 'base/base-fullscreen.html' %}
+
+{% block title %} Login {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% if loginCheck %}
+  {% block content %}
+
+  <head>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  </head>
+
+  <!-- Page content -->
+  <div class="container mt--8 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <div class="card bg-secondary border-0 mb-0">
+          <div class="card-body px-lg-5 py-lg-5 text-center">
+            <h3 class="mb-4 text-center">광고 등록</h3>
+            <span class="mb-0 text-muted text-center">
+              <p>파일이름 영어로 올려주세요.</p>
+            </span>      
+
+            <br />
+
+            <form action="/s3" method="POST" enctype="multipart/form-data">
+              <div class="input-group mb-5">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile" name="file" lang="en" required>
+                </div>
+                <button type="submit" class="btn btn-primary shadow-2 mb-4">업로드</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+  </script>
+  {% endblock content %}
+{% else %}
+  <h1>로그인 후 접속 가능합니다.</h1>
+{% endif %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

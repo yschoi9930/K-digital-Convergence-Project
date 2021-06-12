@@ -1,0 +1,100 @@
+{% extends 'base/base-fullscreen.html' %}
+
+{% block title %} Register {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<head>
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card bg-secondary border-0">
+
+        <div class="card-body px-lg-5 py-lg-5 text-center">
+
+            <h3 class="mb-4 text-center">Signup</h3>
+
+            <br />
+
+          <form id="form" role="form" method="post">
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="category">
+              <option selected>광고주 구분</option>
+              <option>회사</option>
+              <option>소상공인</option>
+            </select>
+
+            <br />
+            <br />
+
+            <div class="input-group mb-3">
+                <input class="form-control" id="email" type="text" placeholder="이메일" required>
+            </div>             
+            <div class="input-group mb-4">
+                <input class="form-control" id="pwd" type="password" placeholder="비밀번호" required>
+            </div>
+            <div class="input-group mb-4">
+                <input class="form-control" id="company_name" type="text" placeholder="가게 이름" required>
+            </div>
+            <div class="input-group mb-4">
+                <input class="form-control" id="name" type="text" placeholder="이름" required>
+            </div>
+            <div class="input-group mb-4">
+                <input class="form-control" id="phone" type="text" placeholder="전화번호 ex)010-0000-0000" required>
+            </div>
+            <div class="input-group mb-4">
+                <input class="form-control" id="company_reg_num" type="text" placeholder="사업자 등록 번호" required>
+            </div>
+            <button type="button" name="signup" id="execute" value="signup" 
+                    class="btn btn-primary shadow-2 mb-4">Signup</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var category
+  $("#category").change(function () {
+    category = $(this).val()
+  });
+
+  $('#execute').click(function () {
+    var email = $('#email').val();
+    var pwd = $('#pwd').val();
+    var company_name = $('#company_name').val();
+    var name = $('#name').val();
+    var phone = $('#phone').val();
+    var company_reg_num = $('#company_reg_num').val();
+
+    var postdata = {
+      'email': email, 'pwd': pwd, 'company_name': company_name, 
+      'category': category, 'user_name': name, 'phone_number': phone, 'company_reg_num': company_reg_num
+      };
+
+    $.ajax({
+      type: 'POST',
+      url: '/signup',
+      data: JSON.stringify(postdata),    
+      contentType: "application/json",
+      success: function (data) {
+        window.location = '/login'
+      },
+      error: function (request, status, error) {
+        alert(error);
+      }
+    })
+  })
+</script>
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

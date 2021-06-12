@@ -1,0 +1,86 @@
+{% extends 'base/base-fullscreen.html' %}
+
+{% block title %} Login {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<head>
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary border-0 mb-0">
+        <div class="card-body px-lg-5 py-lg-5 text-center">
+          <h3 class="mb-4 text-center">Login</h3>
+          <span class="mb-0 text-muted text-center">
+
+          </span>      
+
+          <br />
+          <br />
+
+          <form id="form" role="form" method="post">   
+
+            <div class="input-group mb-3">
+              <input class="form-control" id="email" type="text" placeholder="이메일" required autofocus>
+            </div>       
+
+            <div class="input-group mb-4">
+              <input class="form-control" id="pwd" type="password" placeholder="비밀번호" required>
+            </div>
+
+            <button type="button" name="login" id="execute" value="login" class="btn btn-primary shadow-2 mb-4">
+              Login
+            </button>
+
+          </form>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-6">
+          <a href="{{ url_for('signup') }}" class="text-light"><small>Signup</small></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#execute').click(function () {
+    var email = $('#email').val();
+    var pwd = $('#pwd').val();
+
+    var postdata = {'email': email, 'pwd': pwd};
+
+    $.ajax({
+      type: 'POST',
+      url: '/login',
+      data: JSON.stringify(postdata),    
+      contentType: "application/json",
+      success: function (data) {
+        if (data.check == 400) 
+          alert('email이 틀렸어요.');
+          
+        else if (data.check == 401)
+          alert("비밀번호가 틀렸어요.");
+        
+        else
+          window.location = '/';
+      },
+      error: function (request, status, error) {
+        alert(error);
+      }
+    })
+  })
+</script>
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

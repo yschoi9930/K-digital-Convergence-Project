@@ -1,0 +1,67 @@
+version: '3'
+services:
+  consul:
+    container_name: focus-consul
+    image: consul:1.9.1
+    command: ["consul","agent", "-config-file=/config/consul-config.hcl", "-config-dir=/consul.d"]
+    volumes:
+      - "./consul.d:/consul.d"
+      - "./consul_config:/config"
+      - "./consul_data:/data"
+    ports:
+      - 8500:8500
+      - 18600:8600
+    networks:
+      focusonme:
+        ipv4_address: 172.18.0.6
+  main-server:
+    container_name: main-server
+    build:
+      context: ./Main-Server
+      dockerfile: Dockerfile
+    image: jhg7856/main-server
+    ports:
+      - 5000:5000
+    networks: 
+      focusonme:
+        ipv4_address: 172.18.0.2
+  login-server:
+    container_name: login-server
+    build:
+      context: ./Login-Server
+      dockerfile: Dockerfile
+    image: jhg7856/login-server
+    ports:
+      - "5001:5001"
+    networks:
+      focusonme:
+        ipv4_address: 172.18.0.3
+  upload-server:
+    container_name: upload-server
+    build:
+      context: ./Upload-Server
+      dockerfile: Dockerfile
+    image: jhg7856/upload-server
+    ports:
+      - "5002:5002"
+    networks:
+      focusonme:
+        ipv4_address: 172.18.0.4
+  get-server:
+    container_name: get-server
+    build:
+      context: ./Get-Server
+      dockerfile: Dockerfile
+    image: jhg7856/get-server
+    ports:
+      - "5003:5003"
+    networks:
+      focusonme:
+        ipv4_address: 172.18.0.5
+networks:
+  focusonme:
+    name: focusonme
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16

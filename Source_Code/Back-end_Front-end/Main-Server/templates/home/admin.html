@@ -1,0 +1,163 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% if loginCheck %}
+  {% block content %}
+
+  <head>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- Demo styles -->
+    <link rel="stylesheet" href="../static/assets/css/style.css">
+    <link rel="stylesheet" href="../static/assets/css/button_style.css">
+    <!-- Button styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700&amp;display=swap'>
+  </head>
+
+  <div id="content-wrapper" class="d-flex flex-column">
+    {% if check == True %}
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+          CPM
+        </h1>
+      </div>
+      
+      <div class="row">   
+
+        {% for i in range(cpm|length) %}
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-s font-weight-bold text-success text-uppercase mb-1">
+                      CPM (1000명 노출당 비용)
+                  </div>
+                  <div class="h2 mb-0 font-weight-bold text-gray-800">
+                    {{ cpm_key[i] }} : {{ cpm[i] }}원
+                  </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+          회사별 수익
+        </h1>
+      </div>
+
+      <div class="row">
+
+        {% for i in range(revenue|length) %}
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                    {{ revenue_key[i] }}
+                  </div>
+                  <div class="h2 mb-0 font-weight-bold text-gray-800">
+                    {{ revenue[i] }}만원
+                  </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      
+      </div>
+
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+          월별 총 수익
+        </h1>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-s font-weight-bold text-success text-uppercase mb-1">
+                      5월
+                  </div>
+                  <div class="h2 mb-0 font-weight-bold text-gray-800">
+                    {{ month }}만원
+                  </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+          기타
+        </h1>
+      </div>
+
+      <div calss="row">
+
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-s font-weight-bold text-info text-uppercase mb-1">
+                      전체 등록된 광고 수(현재 시점)
+                  </div>
+                  <div class="h2 mb-0 font-weight-bold text-gray-800">
+                    {{ cnt }}개
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    
+    {% else %}
+      <div></div>
+    {% endif %}
+
+  {% include "base/footer.html" %}
+
+  </div>
+
+  {% endblock content %}
+{% else %}
+  <h2>로그인 후 접속 가능합니다.</h2>
+{% endif %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+
+<script>
+  
+</script>
+{% endblock javascripts %}

@@ -1,0 +1,8 @@
+{
+    "service": {
+        "name" : "upload-server",
+        "address": "172.18.0.4",
+        "tags" : ["upload-server"],
+        "port" : 5002
+    }
+}

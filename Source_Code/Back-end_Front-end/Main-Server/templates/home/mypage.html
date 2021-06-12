@@ -1,0 +1,327 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% if loginCheck %}
+  {% block content %}
+
+  <head>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Demo styles -->
+    <link rel="stylesheet" href="../static/assets/css/swiper_style.css">
+
+    <!-- Button styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700&amp;display=swap'>
+  </head>
+
+  <div class="container-fluid">
+
+    {% if check == True %}
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h2 mb-0 text-gray-800">등록한 광고 : {{ pie_data.ad_name }}</h1>
+        <a href="upload" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> 광고 등록</a>
+    </div>
+
+      <div class="row">
+
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-s font-weight-bold text-success text-uppercase mb-1">
+                        CPM (1000명 노출당 비용)</div>
+                    <div class="h2 mb-0 font-weight-bold text-gray-800">
+                      {{ pie_data.cpm }}원
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-s font-weight-bold text-info text-uppercase mb-1">
+                          Reach (도달율)
+                      </div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h2 mb-0 mr-3 font-weight-bold text-gray-800">
+                            {{ pie_data.reach }}%
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-info" role="progressbar"
+                                style="width: {{ pie_data.reach }}%" aria-valuenow="84" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                      <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                          Frequency (빈도수)
+                        </div>
+                      <div class="h2 mb-0 font-weight-bold text-gray-800">
+                        {{ pie_data.frequency }}회
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                      <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                          시청자 수
+                        </div>
+                      <div class="h2 mb-0 font-weight-bold text-gray-800">
+                        {{ pie_data.cnt }}명
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+
+      <div class="row">
+
+        <div class="col-xl-4 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">광고 시청자 성별</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2">
+                <canvas id="myPieChart-gender"></canvas>
+              </div>
+              <div class="mt-4 text-center small">
+                <span class="mr-2">
+                  <i class="fas fa-circle text-primary"></i> 남자
+                </span>
+                <span class="mr-2">
+                  <i class="fas fa-circle text-success"></i> 여자
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">광고 시청자 연령</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2">
+                <canvas id="myPieChart-age"></canvas>
+              </div>
+              <div class="mt-4 text-center small">
+                <span class="mr-2">
+                  <i class="fas fa-circle text-primary"></i> kids
+                </span>
+                <span class="mr-2">
+                  <i class="fas fa-circle text-success"></i> 2030
+                </span>
+                <span class="mr-2">
+                  <i class="fas fa-circle text-4050"></i> 4050
+                </span>
+                <span class="mr-2">
+                  <i class="fas fa-circle text-silver"></i> silver
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">광고 시청자 분류</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2">
+                <canvas id="myPieChart-classification"></canvas>
+              </div>
+              <div class="mt-4 text-center small">
+                <span class="mr-2">
+                  <i class="fas fa-circle text-success"></i> kids
+                </span>
+                <span class="mr-2">
+                  <i class="fas fa-circle text-primary"></i> 2030여
+                </span>
+                <span class="mr-2">
+                  <i class="fas fa-circle text-success"></i> 2030남
+                </span>
+                <span class="mr-2">
+                  <i class="fas fa-circle text-4050"></i> 4050여
+                </span>
+                <span class="mr-2">
+                  <i class="fas fa-circle text-4050m"></i> 4050남
+                </span>
+                <span class="mr-2">
+                  <i class="fas fa-circle text-silver"></i> silver
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="content-wrapper" class="d-flex flex-column">
+        {% if user_id == 2 %}
+          <iframe style="height:400px" src={{ url_for('map1') }}></iframe>
+        {% elif user_id == 3 %}
+          <iframe style="height:400px" src={{ url_for('map2') }}></iframe>
+        {% elif user_id == 4 %}
+          <iframe style="height:400px" src={{ url_for('map3') }}></iframe>
+        {% elif user_id == 5 %}
+          <iframe style="height:400px" src={{ url_for('map4') }}></iframe>
+        {% elif user_id == 6 %}
+          <iframe style="height:400px" src={{ url_for('map5') }}></iframe>
+        {% else %}
+          <iframe style="height:400px" src={{ url_for('map6') }}></iframe>
+        {% endif %}
+      </div>
+
+      <br />
+      <br />
+      <br />
+
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">월별 광고 노출량</h1>
+      </div>
+
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <img style="width:100%" src="../static/assets/img/graph/month-2.png">
+          </div>
+
+          <div class="swiper-slide">
+            <img style="width:100%" src="../static/assets/img/graph/month-3.png">
+          </div>
+
+          <div class="swiper-slide">
+            <img style="width:100%" src="../static/assets/img/graph/month-4.png">
+          </div>
+
+        </div>
+        <!-- end swiper-wrapper -->
+
+        <!-- swipper controls -->
+        <div style="visibility:visible; opacity:1; transform:translateX(0);" class="swiper-button-next"></div>
+        <div style="visibility:visible; opacity:1; transform:translateX(0);" class="swiper-button-prev"></div>
+
+      </div>
+
+      <br />
+
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">일별 광고 노출량</h1>
+      </div>
+
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <img style="width:100%" src="../static/assets/img/graph/day4-1.png">
+          </div>
+
+          <div class="swiper-slide">
+            <img style="width:100%" src="../static/assets/img/graph/day4-2.png">
+          </div>
+
+          <div class="swiper-slide">
+            <img style="width:100%" src="../static/assets/img/graph/day4-3.png">
+          </div>
+
+        </div>
+        <!-- end swiper-wrapper -->
+
+        <!-- swipper controls -->
+        <div style="visibility:visible; opacity:1; transform:translateX(0);" class="swiper-button-next"></div>
+        <div style="visibility:visible; opacity:1; transform:translateX(0);" class="swiper-button-prev"></div>
+
+      </div>
+
+    {% else %}
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <a href="upload" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> 광고 등록</a>
+      </div>
+    {% endif %}
+      
+    {% include "base/footer.html" %}
+
+  </div>
+
+  {% endblock content %}
+{% else %}
+  <h1>로그인 후 접속 가능합니다.</h1>
+{% endif %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var pie_data = JSON.parse('{{ pie_data | tojson | safe}}');
+
+  var menu = [];
+  jQuery('.swiper-slide').each( function(index){
+      menu.push( jQuery(this).find('.slide-inner').attr("data-text") );
+  });
+
+  var swiper = new Swiper(".swiper-container", {
+    loop: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+<script src="static/assets/js/chart-pie-demo.js"></script>
+
+{% endblock javascripts %}

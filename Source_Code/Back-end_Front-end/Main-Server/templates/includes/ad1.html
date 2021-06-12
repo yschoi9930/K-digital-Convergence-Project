@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script>L_PREFER_CANVAS=false; L_NO_TOUCH=false; L_DISABLE_3D=false;</script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.4.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+    <meta name="viewport" content="width=device-width,
+        initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>#map_5729f2df05214d319ee71a6d9f702a55 {
+        position: relative;
+        width: 100.0%;
+        height: 100.0%;
+        left: 0.0%;
+        top: 0.0%;
+        }
+    </style>
+</head>
+<body>    
+    
+    <div class="folium-map" id="map_5729f2df05214d319ee71a6d9f702a55" ></div>
+</body>
+<script>    
+    
+    
+        var bounds = null;
+    
+
+    var map_5729f2df05214d319ee71a6d9f702a55 = L.map(
+        'map_5729f2df05214d319ee71a6d9f702a55', {
+        center: [37.49011172105985, 127.04510917946214],
+        zoom: 13,
+        maxBounds: bounds,
+        layers: [],
+        worldCopyJump: false,
+        crs: L.CRS.EPSG3857,
+        zoomControl: true,
+        });
+
+
+    
+    var tile_layer_0dc0cbaa36b441a09666e0eda35539a5 = L.tileLayer(
+        'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
+        {
+        "attribution": null,
+        "detectRetina": false,
+        "maxNativeZoom": 18,
+        "maxZoom": 18,
+        "minZoom": 0,
+        "noWrap": false,
+        "opacity": 1,
+        "subdomains": "abc",
+        "tms": false
+}).addTo(map_5729f2df05214d319ee71a6d9f702a55);
+    
+            var circle_marker_1d5d06e2c7e045ffb97b63afc8282268 = L.circleMarker(
+                [37.4898434, 127.0438136],
+                {
+  "bubblingMouseEvents": true,
+  "color": "#39B7D0",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "#39B7D0",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 160,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_5729f2df05214d319ee71a6d9f702a55);
+            
+    
+            var popup_de6f4b14965643a8a266a2c2de297e25 = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_f9f141c827e44f4999a6ead77297af7e = $(`<div id="html_f9f141c827e44f4999a6ead77297af7e" style="width: 100.0%; height: 100.0%;">도곡동</div>`)[0];
+                popup_de6f4b14965643a8a266a2c2de297e25.setContent(html_f9f141c827e44f4999a6ead77297af7e);
+            
+
+            circle_marker_1d5d06e2c7e045ffb97b63afc8282268.bindPopup(popup_de6f4b14965643a8a266a2c2de297e25)
+            ;
+
+            
+        
+    
+            var circle_marker_98b189f8f5934cf58da4a88233e46e82 = L.circleMarker(
+                [37.5139848, 127.0565207],
+                {
+  "bubblingMouseEvents": true,
+  "color": "#39B7D0",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "#39B7D0",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 105,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_5729f2df05214d319ee71a6d9f702a55);
+            
+    
+            var popup_56450f51225b4553b1fa348a1d357b63 = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_2bf0a14b12774176b5aaf471ef4be553 = $(`<div id="html_2bf0a14b12774176b5aaf471ef4be553" style="width: 100.0%; height: 100.0%;">삼성동</div>`)[0];
+                popup_56450f51225b4553b1fa348a1d357b63.setContent(html_2bf0a14b12774176b5aaf471ef4be553);
+            
+
+            circle_marker_98b189f8f5934cf58da4a88233e46e82.bindPopup(popup_56450f51225b4553b1fa348a1d357b63)
+            ;
+
+            
+        
+    
+            var circle_marker_b692c6828bf04e998f7bda19438ead88 = L.circleMarker(
+                [37.4731977, 127.0381702],
+                {
+  "bubblingMouseEvents": true,
+  "color": "#39B7D0",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "#39B7D0",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 60,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_5729f2df05214d319ee71a6d9f702a55);
+            
+    
+            var popup_929153333acb4d1d8def76af7b34066d = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_3808e97445404102af64294d8efbdba6 = $(`<div id="html_3808e97445404102af64294d8efbdba6" style="width: 100.0%; height: 100.0%;">양재동</div>`)[0];
+                popup_929153333acb4d1d8def76af7b34066d.setContent(html_3808e97445404102af64294d8efbdba6);
+            
+
+            circle_marker_b692c6828bf04e998f7bda19438ead88.bindPopup(popup_929153333acb4d1d8def76af7b34066d)
+            ;
+
+            
+        
+    
+            var layer_control_575a67c4ff054eab93037428cd2c56b7 = {
+                base_layers : { "cartodbpositron" : tile_layer_0dc0cbaa36b441a09666e0eda35539a5, },
+                overlays : {  }
+                };
+            L.control.layers(
+                layer_control_575a67c4ff054eab93037428cd2c56b7.base_layers,
+                layer_control_575a67c4ff054eab93037428cd2c56b7.overlays,
+                {position: 'topright',
+                 collapsed: false,
+                 autoZIndex: true
+                }).addTo(map_5729f2df05214d319ee71a6d9f702a55);
+            
+        
+</script>

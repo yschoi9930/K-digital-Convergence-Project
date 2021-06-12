@@ -1,0 +1,8 @@
+{
+    "service": {
+        "name" : "main-server",
+        "address": "172.18.0.2",
+        "tags" : ["main-server"],
+        "port" : 5000
+    }
+}
